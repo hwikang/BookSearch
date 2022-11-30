@@ -21,6 +21,10 @@
 		BFC40EB52936F262002C19D2 /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC40EB42936F262002C19D2 /* Book.swift */; };
 		BFC40EB72936F603002C19D2 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC40EB62936F603002C19D2 /* NetworkError.swift */; };
 		BFC40EBA2937138F002C19D2 /* UITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC40EB92937138F002C19D2 /* UITextField.swift */; };
+		BFC40EBD29373379002C19D2 /* BookTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC40EBC29373379002C19D2 /* BookTableViewCell.swift */; };
+		BFC40EC0293747C1002C19D2 /* UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC40EBF293747C1002C19D2 /* UIImageView.swift */; };
+		BFC40EC3293747DB002C19D2 /* ImageCacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC40EC2293747DB002C19D2 /* ImageCacheManager.swift */; };
+		BFC40EC5293748ED002C19D2 /* Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC40EC4293748ED002C19D2 /* Layout.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +55,10 @@
 		BFC40EB42936F262002C19D2 /* Book.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Book.swift; sourceTree = "<group>"; };
 		BFC40EB62936F603002C19D2 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		BFC40EB92937138F002C19D2 /* UITextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextField.swift; sourceTree = "<group>"; };
+		BFC40EBC29373379002C19D2 /* BookTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookTableViewCell.swift; sourceTree = "<group>"; };
+		BFC40EBF293747C1002C19D2 /* UIImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageView.swift; sourceTree = "<group>"; };
+		BFC40EC2293747DB002C19D2 /* ImageCacheManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCacheManager.swift; sourceTree = "<group>"; };
+		BFC40EC4293748ED002C19D2 /* Layout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Layout.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,6 +102,8 @@
 			children = (
 				BFC40E732936D54B002C19D2 /* AppDelegate.swift */,
 				BFC40E752936D54B002C19D2 /* SceneDelegate.swift */,
+				BFC40EC4293748ED002C19D2 /* Layout.swift */,
+				BFC40EC1293747CC002C19D2 /* Util */,
 				BFC40EB82936FEAC002C19D2 /* Extension */,
 				BFC40EAC2936EFE8002C19D2 /* Network */,
 				BFC40EA62936D813002C19D2 /* Presentation */,
@@ -123,9 +133,9 @@
 		BFC40EA72936D83D002C19D2 /* Search */ = {
 			isa = PBXGroup;
 			children = (
+				BFC40EBB29372FA1002C19D2 /* Components */,
 				BFC40E772936D54B002C19D2 /* SearchViewController.swift */,
 				BFC40EAA2936DF8E002C19D2 /* SearchViewModel.swift */,
-				BFC40EA82936DE58002C19D2 /* SearchTextField.swift */,
 			);
 			path = Search;
 			sourceTree = "<group>";
@@ -154,8 +164,26 @@
 			isa = PBXGroup;
 			children = (
 				BFC40EB92937138F002C19D2 /* UITextField.swift */,
+				BFC40EBF293747C1002C19D2 /* UIImageView.swift */,
 			);
 			path = Extension;
+			sourceTree = "<group>";
+		};
+		BFC40EBB29372FA1002C19D2 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				BFC40EA82936DE58002C19D2 /* SearchTextField.swift */,
+				BFC40EBC29373379002C19D2 /* BookTableViewCell.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		BFC40EC1293747CC002C19D2 /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				BFC40EC2293747DB002C19D2 /* ImageCacheManager.swift */,
+			);
+			path = Util;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -260,10 +288,14 @@
 			files = (
 				BFC40E782936D54B002C19D2 /* SearchViewController.swift in Sources */,
 				BFC40EAB2936DF8E002C19D2 /* SearchViewModel.swift in Sources */,
+				BFC40EC5293748ED002C19D2 /* Layout.swift in Sources */,
 				BFC40EB02936F0A0002C19D2 /* SearchNetwork.swift in Sources */,
+				BFC40EC0293747C1002C19D2 /* UIImageView.swift in Sources */,
 				BFC40EBA2937138F002C19D2 /* UITextField.swift in Sources */,
+				BFC40EBD29373379002C19D2 /* BookTableViewCell.swift in Sources */,
 				BFC40EAE2936EFF8002C19D2 /* NetworkManager.swift in Sources */,
 				BFC40E742936D54B002C19D2 /* AppDelegate.swift in Sources */,
+				BFC40EC3293747DB002C19D2 /* ImageCacheManager.swift in Sources */,
 				BFC40EB52936F262002C19D2 /* Book.swift in Sources */,
 				BFC40EB32936F20A002C19D2 /* SearchList.swift in Sources */,
 				BFC40E762936D54B002C19D2 /* SceneDelegate.swift in Sources */,
@@ -352,7 +384,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -406,7 +438,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -429,6 +461,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -455,6 +488,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

@@ -32,7 +32,6 @@ class NetworkManager {
     
     func fetchData<T: Decodable> (url: String, dataType: T.Type) throws -> AnyPublisher<T, Error> {
         guard let url = URL(string: url) else {
-//            return Fail(error: NetworkError.urlError).eraseToAnyPublisher()
             throw NetworkError.urlError
         }
     
