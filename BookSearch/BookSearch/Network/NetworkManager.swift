@@ -16,6 +16,33 @@ class NetworkManager {
         self.session = session
     }
     
+    func fetchData<T:Decodable> (url: String, dataType: T.Type, completion: @escaping ((Result<T,Error>) -> Void)){
+         guard let url = URL(string: url) else {
+             completion(.failure(NetworkError.urlError))
+             return 
+         }
+         session.dataTask(with: url) { (data, response, error) in
+             if let error = error {
+                 print(error)
+                 completion(.failure(error))
+                 return
+             }
+             if let data = data,
+                let response = response as? HTTPURLResponse,
+                200..<300 ~= response.statusCode {
+                 do {
+                     let data = try JSONDecoder().decode(T.self, from: data)
+                     completion(.success(data))
+                 } catch {
+                     completion(.failure(NetworkError.failToDecode))
+                 }
+             }else {
+                 completion(.failure(NetworkError.invalid))
+             }
+         }.resume()
+         
+     }
+  
     func fetchData<T: Decodable> (url: String, dataType: T.Type) async throws -> T {
         guard let url = URL(string: url) else {
             throw NetworkError.urlError
@@ -27,24 +54,6 @@ class NetworkManager {
             throw NetworkError.invalid
         }
         return try JSONDecoder().decode(T.self, from: data)
-
-    }
-    
-    func fetchData<T: Decodable> (url: String, dataType: T.Type) throws -> AnyPublisher<T, Error> {
-        guard let url = URL(string: url) else {
-            throw NetworkError.urlError
-        }
-    
-        return session.dataTaskPublisher(for: url)
-            .tryMap({ data,response in
-                guard let httpResponse = response as? HTTPURLResponse, 200..<300 ~= httpResponse.statusCode else {
-                    throw NetworkError.invalid
-                }
-                return data
-            })
-            .decode(type: T.self, decoder: JSONDecoder())
-            .eraseToAnyPublisher()
-           
 
     }
 }
