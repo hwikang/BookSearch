@@ -6,13 +6,13 @@
 //
 
 import UIKit
-import SnapKit
-import RxSwift
+import Combine
 
 class SearchViewController: UIViewController {
-    private let disposeBag = DisposeBag()
+
     private let viewModel: SearchViewModel = SearchViewModel()
     private let textField = SearchTextField()
+    private var cancellables = Set<AnyCancellable>()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,26 +28,30 @@ class SearchViewController: UIViewController {
     }
     
     private func setConstraint() {
-        textField.snp.makeConstraints { make in
-            make.top.equalTo(self.view.safeAreaLayoutGuide)
-            make.left.equalTo(20)
-            make.right.equalTo(-20)
-            make.height.equalTo(44)
-        }
+        textField.translatesAutoresizingMaskIntoConstraints = false
+        let textFieldConstraints = [
+            textField.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 20),
+            textField.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -20),            textField.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
+            textField.heightAnchor.constraint(equalToConstant: 44)]
+
+        NSLayoutConstraint.activate(textFieldConstraints)
     }
 
     private func bindViewModel() {
-        let searchTrigger = textField.rx.controlEvent([.editingDidEndOnExit]).asObservable()
-        let searchText = textField.rx.text.orEmpty.asObservable()
-        let input = SearchViewModel.Input(
-            searchTrigger: searchTrigger,
-            searchText: searchText)
         
+        let searchText = textField.textPublisher
+        
+        let input = SearchViewModel.Input(
+            searchText: searchText)
+//        
         let output = viewModel.transform(input: input)
         
-        output.test.bind{ num in
-            print(num)
-        }.disposed(by: disposeBag)
+        output.list.sink { error in
+            print("Sink Error \(error)")
+        } receiveValue: { searchList in
+            print("List \(searchList)")
+        }.store(in: &cancellables)
+
     }
 }
 

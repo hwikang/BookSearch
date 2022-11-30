@@ -12,6 +12,7 @@ class SearchTextField: UITextField {
         super.init(frame: frame)
         self.borderStyle = .roundedRect
         self.keyboardType = .default
+    
     }
     
     required init?(coder: NSCoder) {

@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Combine
 
 class NetworkManager {
     
@@ -26,6 +27,25 @@ class NetworkManager {
             throw NetworkError.invalid
         }
         return try JSONDecoder().decode(T.self, from: data)
+
+    }
+    
+    func fetchData<T: Decodable> (url: String, dataType: T.Type) throws -> AnyPublisher<T, Error> {
+        guard let url = URL(string: url) else {
+//            return Fail(error: NetworkError.urlError).eraseToAnyPublisher()
+            throw NetworkError.urlError
+        }
+    
+        return session.dataTaskPublisher(for: url)
+            .tryMap({ data,response in
+                guard let httpResponse = response as? HTTPURLResponse, 200..<300 ~= httpResponse.statusCode else {
+                    throw NetworkError.invalid
+                }
+                return data
+            })
+            .decode(type: T.self, decoder: JSONDecoder())
+            .eraseToAnyPublisher()
+           
 
     }
 }
