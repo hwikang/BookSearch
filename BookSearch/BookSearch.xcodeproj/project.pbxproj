@@ -25,6 +25,8 @@
 		BFC40EC0293747C1002C19D2 /* UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC40EBF293747C1002C19D2 /* UIImageView.swift */; };
 		BFC40EC3293747DB002C19D2 /* ImageCacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC40EC2293747DB002C19D2 /* ImageCacheManager.swift */; };
 		BFC40EC5293748ED002C19D2 /* Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC40EC4293748ED002C19D2 /* Layout.swift */; };
+		BFC40EC729375281002C19D2 /* URLSessionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC40EC629375280002C19D2 /* URLSessionTests.swift */; };
+		BFC40EC9293752F2002C19D2 /* MockURLSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC40EC8293752F2002C19D2 /* MockURLSession.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +61,8 @@
 		BFC40EBF293747C1002C19D2 /* UIImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageView.swift; sourceTree = "<group>"; };
 		BFC40EC2293747DB002C19D2 /* ImageCacheManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCacheManager.swift; sourceTree = "<group>"; };
 		BFC40EC4293748ED002C19D2 /* Layout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Layout.swift; sourceTree = "<group>"; };
+		BFC40EC629375280002C19D2 /* URLSessionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionTests.swift; sourceTree = "<group>"; };
+		BFC40EC8293752F2002C19D2 /* MockURLSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockURLSession.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,6 +121,8 @@
 			isa = PBXGroup;
 			children = (
 				BFC40E8A2936D54C002C19D2 /* BookSearchTests.swift */,
+				BFC40EC629375280002C19D2 /* URLSessionTests.swift */,
+				BFC40EC8293752F2002C19D2 /* MockURLSession.swift */,
 			);
 			path = BookSearchTests;
 			sourceTree = "<group>";
@@ -308,6 +314,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BFC40EC9293752F2002C19D2 /* MockURLSession.swift in Sources */,
+				BFC40EC729375281002C19D2 /* URLSessionTests.swift in Sources */,
 				BFC40E8B2936D54C002C19D2 /* BookSearchTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
