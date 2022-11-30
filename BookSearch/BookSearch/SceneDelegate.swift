@@ -17,7 +17,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         let mainVC = SearchViewController()
         let rootVC = UINavigationController(rootViewController: mainVC)
+        window?.backgroundColor = .white
         window?.rootViewController = rootVC
+
         window?.makeKeyAndVisible()
     }
     

@@ -10,11 +10,13 @@
 		0979526ED6413484D3F5114D /* Pods_BookSearchTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AAC6E80CDD060A0452E0CAB /* Pods_BookSearchTests.framework */; };
 		BFC40E742936D54B002C19D2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC40E732936D54B002C19D2 /* AppDelegate.swift */; };
 		BFC40E762936D54B002C19D2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC40E752936D54B002C19D2 /* SceneDelegate.swift */; };
-		BFC40E782936D54B002C19D2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC40E772936D54B002C19D2 /* ViewController.swift */; };
+		BFC40E782936D54B002C19D2 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC40E772936D54B002C19D2 /* SearchViewController.swift */; };
 		BFC40E7D2936D54C002C19D2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BFC40E7C2936D54C002C19D2 /* Assets.xcassets */; };
 		BFC40E802936D54C002C19D2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BFC40E7E2936D54C002C19D2 /* LaunchScreen.storyboard */; };
 		BFC40E8B2936D54C002C19D2 /* BookSearchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC40E8A2936D54C002C19D2 /* BookSearchTests.swift */; };
 		BFC40EA42936D590002C19D2 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = BFC40EA32936D590002C19D2 /* .swiftlint.yml */; };
+		BFC40EA92936DE58002C19D2 /* SearchTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC40EA82936DE58002C19D2 /* SearchTextField.swift */; };
+		BFC40EAB2936DF8E002C19D2 /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC40EAA2936DF8E002C19D2 /* SearchViewModel.swift */; };
 		F02DF42EDD433ABD13021ED1 /* Pods_BookSearch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 16F3E5F355D2EC2766B1A6E2 /* Pods_BookSearch.framework */; };
 /* End PBXBuildFile section */
 
@@ -37,13 +39,15 @@
 		BFC40E702936D54B002C19D2 /* BookSearch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BookSearch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BFC40E732936D54B002C19D2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BFC40E752936D54B002C19D2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		BFC40E772936D54B002C19D2 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		BFC40E772936D54B002C19D2 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		BFC40E7C2936D54C002C19D2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BFC40E7F2936D54C002C19D2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BFC40E812936D54C002C19D2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BFC40E862936D54C002C19D2 /* BookSearchTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BookSearchTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BFC40E8A2936D54C002C19D2 /* BookSearchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookSearchTests.swift; sourceTree = "<group>"; };
 		BFC40EA32936D590002C19D2 /* .swiftlint.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
+		BFC40EA82936DE58002C19D2 /* SearchTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTextField.swift; sourceTree = "<group>"; };
+		BFC40EAA2936DF8E002C19D2 /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
 		FAA73B42F9D8CAF91E9480F4 /* Pods-BookSearch.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BookSearch.release.xcconfig"; path = "Target Support Files/Pods-BookSearch/Pods-BookSearch.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -140,7 +144,9 @@
 		BFC40EA72936D83D002C19D2 /* Search */ = {
 			isa = PBXGroup;
 			children = (
-				BFC40E772936D54B002C19D2 /* ViewController.swift */,
+				BFC40E772936D54B002C19D2 /* SearchViewController.swift */,
+				BFC40EAA2936DF8E002C19D2 /* SearchViewModel.swift */,
+				BFC40EA82936DE58002C19D2 /* SearchTextField.swift */,
 			);
 			path = Search;
 			sourceTree = "<group>";
@@ -157,6 +163,7 @@
 				BFC40E6D2936D54A002C19D2 /* Frameworks */,
 				BFC40E6E2936D54A002C19D2 /* Resources */,
 				BFC40EA52936D601002C19D2 /* SwiftLint */,
+				DF24642F0BB47ECF1ECD92F1 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -307,6 +314,23 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		DF24642F0BB47ECF1ECD92F1 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-BookSearch/Pods-BookSearch-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-BookSearch/Pods-BookSearch-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BookSearch/Pods-BookSearch-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -314,9 +338,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BFC40E782936D54B002C19D2 /* ViewController.swift in Sources */,
+				BFC40E782936D54B002C19D2 /* SearchViewController.swift in Sources */,
+				BFC40EAB2936DF8E002C19D2 /* SearchViewModel.swift in Sources */,
 				BFC40E742936D54B002C19D2 /* AppDelegate.swift in Sources */,
 				BFC40E762936D54B002C19D2 /* SceneDelegate.swift in Sources */,
+				BFC40EA92936DE58002C19D2 /* SearchTextField.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
