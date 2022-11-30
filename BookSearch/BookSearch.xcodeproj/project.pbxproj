@@ -17,6 +17,11 @@
 		BFC40EA42936D590002C19D2 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = BFC40EA32936D590002C19D2 /* .swiftlint.yml */; };
 		BFC40EA92936DE58002C19D2 /* SearchTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC40EA82936DE58002C19D2 /* SearchTextField.swift */; };
 		BFC40EAB2936DF8E002C19D2 /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC40EAA2936DF8E002C19D2 /* SearchViewModel.swift */; };
+		BFC40EAE2936EFF8002C19D2 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC40EAD2936EFF8002C19D2 /* NetworkManager.swift */; };
+		BFC40EB02936F0A0002C19D2 /* SearchNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC40EAF2936F0A0002C19D2 /* SearchNetwork.swift */; };
+		BFC40EB32936F20A002C19D2 /* SearchList.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC40EB22936F20A002C19D2 /* SearchList.swift */; };
+		BFC40EB52936F262002C19D2 /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC40EB42936F262002C19D2 /* Book.swift */; };
+		BFC40EB72936F603002C19D2 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC40EB62936F603002C19D2 /* NetworkError.swift */; };
 		F02DF42EDD433ABD13021ED1 /* Pods_BookSearch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 16F3E5F355D2EC2766B1A6E2 /* Pods_BookSearch.framework */; };
 /* End PBXBuildFile section */
 
@@ -48,6 +53,11 @@
 		BFC40EA32936D590002C19D2 /* .swiftlint.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		BFC40EA82936DE58002C19D2 /* SearchTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTextField.swift; sourceTree = "<group>"; };
 		BFC40EAA2936DF8E002C19D2 /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
+		BFC40EAD2936EFF8002C19D2 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		BFC40EAF2936F0A0002C19D2 /* SearchNetwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchNetwork.swift; sourceTree = "<group>"; };
+		BFC40EB22936F20A002C19D2 /* SearchList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchList.swift; sourceTree = "<group>"; };
+		BFC40EB42936F262002C19D2 /* Book.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Book.swift; sourceTree = "<group>"; };
+		BFC40EB62936F603002C19D2 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		FAA73B42F9D8CAF91E9480F4 /* Pods-BookSearch.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BookSearch.release.xcconfig"; path = "Target Support Files/Pods-BookSearch/Pods-BookSearch.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -117,6 +127,8 @@
 			children = (
 				BFC40E732936D54B002C19D2 /* AppDelegate.swift */,
 				BFC40E752936D54B002C19D2 /* SceneDelegate.swift */,
+				BFC40EB82936FEAC002C19D2 /* Extension */,
+				BFC40EAC2936EFE8002C19D2 /* Network */,
 				BFC40EA62936D813002C19D2 /* Presentation */,
 				BFC40E7C2936D54C002C19D2 /* Assets.xcassets */,
 				BFC40E812936D54C002C19D2 /* Info.plist */,
@@ -149,6 +161,33 @@
 				BFC40EA82936DE58002C19D2 /* SearchTextField.swift */,
 			);
 			path = Search;
+			sourceTree = "<group>";
+		};
+		BFC40EAC2936EFE8002C19D2 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				BFC40EAD2936EFF8002C19D2 /* NetworkManager.swift */,
+				BFC40EB62936F603002C19D2 /* NetworkError.swift */,
+				BFC40EAF2936F0A0002C19D2 /* SearchNetwork.swift */,
+				BFC40EB12936F1B5002C19D2 /* Model */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		BFC40EB12936F1B5002C19D2 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				BFC40EB22936F20A002C19D2 /* SearchList.swift */,
+				BFC40EB42936F262002C19D2 /* Book.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		BFC40EB82936FEAC002C19D2 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Extension;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -340,9 +379,14 @@
 			files = (
 				BFC40E782936D54B002C19D2 /* SearchViewController.swift in Sources */,
 				BFC40EAB2936DF8E002C19D2 /* SearchViewModel.swift in Sources */,
+				BFC40EB02936F0A0002C19D2 /* SearchNetwork.swift in Sources */,
+				BFC40EAE2936EFF8002C19D2 /* NetworkManager.swift in Sources */,
 				BFC40E742936D54B002C19D2 /* AppDelegate.swift in Sources */,
+				BFC40EB52936F262002C19D2 /* Book.swift in Sources */,
+				BFC40EB32936F20A002C19D2 /* SearchList.swift in Sources */,
 				BFC40E762936D54B002C19D2 /* SceneDelegate.swift in Sources */,
 				BFC40EA92936DE58002C19D2 /* SearchTextField.swift in Sources */,
+				BFC40EB72936F603002C19D2 /* NetworkError.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
