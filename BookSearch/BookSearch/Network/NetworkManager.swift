@@ -34,6 +34,7 @@ class NetworkManager {
                      let data = try JSONDecoder().decode(T.self, from: data)
                      completion(.success(data))
                  } catch {
+                     print(error)
                      completion(.failure(NetworkError.failToDecode))
                  }
              }else {

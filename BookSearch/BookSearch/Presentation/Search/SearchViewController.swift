@@ -9,11 +9,10 @@ import UIKit
 import Combine
 
 class SearchViewController: UIViewController {
-
-    private let viewModel: SearchViewModel = SearchViewModel()
-    
+    private var cancellables = Set<AnyCancellable>()
+    private let viewModel: SearchViewModel = SearchViewModel(network: SearchNetwork(network: NetworkManager(session: URLSession.shared)))
     private var dataSource: UITableViewDiffableDataSource<Section, Book>!
-    
+    private let loadMoreSubject = PassthroughSubject<Void, Never>()
     private let textField = SearchTextField()
     lazy var tableView: UITableView = {
         let tableView = UITableView(frame: .zero)
@@ -21,13 +20,11 @@ class SearchViewController: UIViewController {
         tableView.rowHeight = Layout.tableViewCellHeight
         return tableView
     }()
-    private var cancellables = Set<AnyCancellable>()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setUI()
         setupTableView()
-        configureDataSource()
         setDismissKeyboardEvent()
         bindViewModel()
     }
@@ -35,9 +32,8 @@ class SearchViewController: UIViewController {
     private func bindViewModel() {
         
         let searchText = textField.textPublisher
-        
-        let input = SearchViewModel.Input(
-            searchText: searchText)
+        let loadMore = loadMoreSubject.eraseToAnyPublisher()
+        let input = SearchViewModel.Input(searchText: searchText, loadMore: loadMore)
 
         let output = viewModel.transform(input: input)
         
@@ -50,11 +46,13 @@ class SearchViewController: UIViewController {
     }
 }
 
-extension SearchViewController {
+extension SearchViewController: UITableViewDataSourcePrefetching {
     enum Section{ case book }
     
     private func setupTableView() {
+        tableView.prefetchDataSource = self
         tableView.register(BookTableViewCell.self, forCellReuseIdentifier: BookTableViewCell.identifier)
+        configureDataSource()
     }
 
     private func updateTableViewSnapshot(_ value: [Book]) {
@@ -78,6 +76,22 @@ extension SearchViewController {
             cell?.bookImage.setImage(url: book.image)
             return cell
         })
+    }
+    
+    func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
+        for indexPath in indexPaths {
+            if needLoadMore(row: indexPath.row){
+                loadMoreSubject.send()
+            }
+        }
+    }
+    
+    private func needLoadMore(row: Int) -> Bool {
+        let dataCount = viewModel.getListCount()
+        if dataCount % 10 == 0 && row >= dataCount - 1 {
+            return true
+        }
+        return false
     }
 }
 

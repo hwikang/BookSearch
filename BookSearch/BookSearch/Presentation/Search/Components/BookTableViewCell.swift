@@ -29,7 +29,8 @@ class BookTableViewCell : UITableViewCell {
     
     let bookImage: UIImageView = {
         let imageView = UIImageView()
-        imageView.contentMode = .scaleAspectFill
+        imageView.image = UIImage(named: "placeholder")
+        imageView.contentMode = .scaleAspectFit
         return imageView
     }()
     let isbnLabel: UILabel = {
@@ -46,6 +47,11 @@ class BookTableViewCell : UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setUI()
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        bookImage.image = UIImage(named: "placeholder")
     }
     
     private func setUI() {
@@ -81,7 +87,6 @@ class BookTableViewCell : UITableViewCell {
         ])
 
     }
-
       
     required init?(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
       
