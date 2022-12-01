@@ -8,7 +8,7 @@
 import Foundation
 import Combine
 
-class NetworkManager {
+final class NetworkManager {
     
     private let session: URLSession
     

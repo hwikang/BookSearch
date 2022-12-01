@@ -8,22 +8,17 @@
 import UIKit
 import Combine
 
-class SearchViewController: UIViewController {
+final class SearchViewController: UIViewController {
     private var cancellables = Set<AnyCancellable>()
     private let viewModel: SearchViewModel = SearchViewModel(network: SearchNetwork(network: NetworkManager(session: URLSession.shared)))
     private var dataSource: UITableViewDiffableDataSource<Section, Book>!
     private let loadMoreSubject = PassthroughSubject<Void, Never>()
-    private let textField = SearchTextField()
-    lazy var tableView: UITableView = {
-        let tableView = UITableView(frame: .zero)
-        tableView.tableFooterView = UIView()
-        tableView.rowHeight = Layout.tableViewCellHeight
-        return tableView
-    }()
 
+    var searchView = SearchView()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        setUI()
+        self.view = searchView
         setupTableView()
         setDismissKeyboardEvent()
         bindViewModel()
@@ -31,7 +26,7 @@ class SearchViewController: UIViewController {
     
     private func bindViewModel() {
         
-        let searchText = textField.textPublisher
+        let searchText = searchView.textField.textPublisher
         let loadMore = loadMoreSubject.eraseToAnyPublisher()
         let input = SearchViewModel.Input(searchText: searchText, loadMore: loadMore)
 
@@ -50,8 +45,8 @@ extension SearchViewController: UITableViewDataSourcePrefetching {
     enum Section{ case book }
     
     private func setupTableView() {
-        tableView.prefetchDataSource = self
-        tableView.register(BookTableViewCell.self, forCellReuseIdentifier: BookTableViewCell.identifier)
+        searchView.tableView.prefetchDataSource = self
+        searchView.tableView.register(BookTableViewCell.self, forCellReuseIdentifier: BookTableViewCell.identifier)
         configureDataSource()
     }
 
@@ -64,7 +59,7 @@ extension SearchViewController: UITableViewDataSourcePrefetching {
        
     
     private func configureDataSource() {
-        dataSource = UITableViewDiffableDataSource<Section, Book>(tableView: tableView, cellProvider: { tableView, indexPath, book in
+        dataSource = UITableViewDiffableDataSource<Section, Book>(tableView: searchView.tableView, cellProvider: { tableView, indexPath, book in
 
            let cell = tableView.dequeueReusableCell(withIdentifier: BookTableViewCell.identifier, for: indexPath) as? BookTableViewCell
             
@@ -107,29 +102,3 @@ extension SearchViewController {
     }
 }
 
-extension SearchViewController {
-    
-    private func setUI() {
-        [textField, tableView].forEach {
-            self.view.addSubview($0)
-            $0.translatesAutoresizingMaskIntoConstraints = false
-        }
-        setConstraint()
-    }
-    
-    private func setConstraint() {
-        let textFieldConstraints = [
-            textField.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 20),
-            textField.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -20),            textField.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
-            textField.heightAnchor.constraint(equalToConstant: 44)]
-        let tableViewConstraints = [
-            tableView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 20),
-            tableView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -20),
-            tableView.topAnchor.constraint(equalTo: textField.bottomAnchor),
-            tableView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor)]
-
-        NSLayoutConstraint.activate(textFieldConstraints)
-        NSLayoutConstraint.activate(tableViewConstraints)
-    }
-
-}

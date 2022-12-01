@@ -8,7 +8,7 @@
 import Foundation
 import Combine
 
-class SearchNetwork {
+final class SearchNetwork {
     private let network: NetworkManager
     private let endPoint = "https://api.itbook.store/1.0/search/"
     

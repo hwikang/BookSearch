@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		BFAB1B5A293850C5001A96A2 /* DummySearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFAB1B59293850C5001A96A2 /* DummySearch.swift */; };
+		BFAB1B5C29386922001A96A2 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFAB1B5B29386922001A96A2 /* SearchView.swift */; };
+		BFAB1B5E29386BA8001A96A2 /* DialogManger.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFAB1B5D29386BA8001A96A2 /* DialogManger.swift */; };
 		BFC40E742936D54B002C19D2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC40E732936D54B002C19D2 /* AppDelegate.swift */; };
 		BFC40E762936D54B002C19D2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC40E752936D54B002C19D2 /* SceneDelegate.swift */; };
 		BFC40E782936D54B002C19D2 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC40E772936D54B002C19D2 /* SearchViewController.swift */; };
@@ -42,6 +44,8 @@
 
 /* Begin PBXFileReference section */
 		BFAB1B59293850C5001A96A2 /* DummySearch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DummySearch.swift; sourceTree = "<group>"; };
+		BFAB1B5B29386922001A96A2 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
+		BFAB1B5D29386BA8001A96A2 /* DialogManger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DialogManger.swift; sourceTree = "<group>"; };
 		BFC40E702936D54B002C19D2 /* BookSearch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BookSearch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BFC40E732936D54B002C19D2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BFC40E752936D54B002C19D2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -152,6 +156,7 @@
 			children = (
 				BFC40EBB29372FA1002C19D2 /* Components */,
 				BFC40E772936D54B002C19D2 /* SearchViewController.swift */,
+				BFAB1B5B29386922001A96A2 /* SearchView.swift */,
 				BFC40EAA2936DF8E002C19D2 /* SearchViewModel.swift */,
 			);
 			path = Search;
@@ -199,6 +204,7 @@
 			isa = PBXGroup;
 			children = (
 				BFC40EC2293747DB002C19D2 /* ImageCacheManager.swift */,
+				BFAB1B5D29386BA8001A96A2 /* DialogManger.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -307,6 +313,7 @@
 				BFC40EAB2936DF8E002C19D2 /* SearchViewModel.swift in Sources */,
 				BFC40EC5293748ED002C19D2 /* Layout.swift in Sources */,
 				BFC40EB02936F0A0002C19D2 /* SearchNetwork.swift in Sources */,
+				BFAB1B5E29386BA8001A96A2 /* DialogManger.swift in Sources */,
 				BFC40EC0293747C1002C19D2 /* UIImageView.swift in Sources */,
 				BFC40EBA2937138F002C19D2 /* UITextField.swift in Sources */,
 				BFC40EBD29373379002C19D2 /* BookTableViewCell.swift in Sources */,
@@ -315,6 +322,7 @@
 				BFC40EC3293747DB002C19D2 /* ImageCacheManager.swift in Sources */,
 				BFC40EB52936F262002C19D2 /* Book.swift in Sources */,
 				BFC40EB32936F20A002C19D2 /* SearchList.swift in Sources */,
+				BFAB1B5C29386922001A96A2 /* SearchView.swift in Sources */,
 				BFC40E762936D54B002C19D2 /* SceneDelegate.swift in Sources */,
 				BFC40EA92936DE58002C19D2 /* SearchTextField.swift in Sources */,
 				BFC40EB72936F603002C19D2 /* NetworkError.swift in Sources */,
