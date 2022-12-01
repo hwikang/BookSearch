@@ -10,11 +10,15 @@ import Combine
 
 final class SearchViewController: UIViewController {
     private var cancellables = Set<AnyCancellable>()
-    private let viewModel: SearchViewModel = SearchViewModel(network: SearchNetwork(network: NetworkManager(session: URLSession.shared)))
+    private let viewModel: SearchViewModel
     private var dataSource: UITableViewDiffableDataSource<Section, Book>!
     private let loadMoreSubject = PassthroughSubject<Void, Never>()
 
     var searchView = SearchView()
+    init(viewModel: SearchViewModel) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,6 +51,10 @@ final class SearchViewController: UIViewController {
             }
             .store(in: &cancellables)
         
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
 }
 
@@ -93,8 +101,11 @@ extension SearchViewController: UITableViewDataSourcePrefetching, UITableViewDel
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let cell = tableView.cellForRow(at: indexPath) as? BookTableViewCell {
-            let vc = BookViewController(isbn: cell.getISBN())
-            self.navigationController?.pushViewController(vc, animated: true)
+            let network = BookNetwork(network: NetworkManager(session: URLSession.shared))
+            let viewModel = BookViewModel(network: network)
+            let viewController = BookViewController(isbn: cell.getISBN(), viewModel: viewModel)
+            
+            self.navigationController?.pushViewController(viewController, animated: true)
         }
     }
     

@@ -9,7 +9,7 @@ import Foundation
 import Combine
 
 final class SearchViewModel {
-    private let network: SearchNetwork
+    private let network: SearchNetworkProtocol
     private var cancellables = Set<AnyCancellable>()
     private let bookList = CurrentValueSubject<[Book],Never>([])
     private let errorMessage = PassthroughSubject<String,Never>()
@@ -26,7 +26,7 @@ final class SearchViewModel {
         let errorMessage: AnyPublisher<String,Never>
     }
     
-    init(network: SearchNetwork){
+    init(network: SearchNetworkProtocol){
         self.network = network
     }
     
