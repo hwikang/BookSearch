@@ -7,12 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BFAB1B5A293850C5001A96A2 /* DummySearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFAB1B59293850C5001A96A2 /* DummySearch.swift */; };
 		BFC40E742936D54B002C19D2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC40E732936D54B002C19D2 /* AppDelegate.swift */; };
 		BFC40E762936D54B002C19D2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC40E752936D54B002C19D2 /* SceneDelegate.swift */; };
 		BFC40E782936D54B002C19D2 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC40E772936D54B002C19D2 /* SearchViewController.swift */; };
 		BFC40E7D2936D54C002C19D2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BFC40E7C2936D54C002C19D2 /* Assets.xcassets */; };
 		BFC40E802936D54C002C19D2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BFC40E7E2936D54C002C19D2 /* LaunchScreen.storyboard */; };
-		BFC40E8B2936D54C002C19D2 /* BookSearchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC40E8A2936D54C002C19D2 /* BookSearchTests.swift */; };
+		BFC40E8B2936D54C002C19D2 /* SearchViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC40E8A2936D54C002C19D2 /* SearchViewModelTests.swift */; };
 		BFC40EA92936DE58002C19D2 /* SearchTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC40EA82936DE58002C19D2 /* SearchTextField.swift */; };
 		BFC40EAB2936DF8E002C19D2 /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC40EAA2936DF8E002C19D2 /* SearchViewModel.swift */; };
 		BFC40EAE2936EFF8002C19D2 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC40EAD2936EFF8002C19D2 /* NetworkManager.swift */; };
@@ -40,6 +41,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		BFAB1B59293850C5001A96A2 /* DummySearch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DummySearch.swift; sourceTree = "<group>"; };
 		BFC40E702936D54B002C19D2 /* BookSearch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BookSearch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BFC40E732936D54B002C19D2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BFC40E752936D54B002C19D2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -48,7 +50,7 @@
 		BFC40E7F2936D54C002C19D2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BFC40E812936D54C002C19D2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BFC40E862936D54C002C19D2 /* BookSearchTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BookSearchTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		BFC40E8A2936D54C002C19D2 /* BookSearchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookSearchTests.swift; sourceTree = "<group>"; };
+		BFC40E8A2936D54C002C19D2 /* SearchViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModelTests.swift; sourceTree = "<group>"; };
 		BFC40EA82936DE58002C19D2 /* SearchTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTextField.swift; sourceTree = "<group>"; };
 		BFC40EAA2936DF8E002C19D2 /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
 		BFC40EAD2936EFF8002C19D2 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
@@ -83,6 +85,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		BFAB1B58293850B0001A96A2 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				BFAB1B59293850C5001A96A2 /* DummySearch.swift */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
 		BFC40E672936D54A002C19D2 = {
 			isa = PBXGroup;
 			children = (
@@ -120,7 +130,8 @@
 		BFC40E892936D54C002C19D2 /* BookSearchTests */ = {
 			isa = PBXGroup;
 			children = (
-				BFC40E8A2936D54C002C19D2 /* BookSearchTests.swift */,
+				BFC40E8A2936D54C002C19D2 /* SearchViewModelTests.swift */,
+				BFAB1B58293850B0001A96A2 /* Data */,
 				BFC40EC629375280002C19D2 /* URLSessionTests.swift */,
 				BFC40EC8293752F2002C19D2 /* MockURLSession.swift */,
 			);
@@ -316,7 +327,8 @@
 			files = (
 				BFC40EC9293752F2002C19D2 /* MockURLSession.swift in Sources */,
 				BFC40EC729375281002C19D2 /* URLSessionTests.swift in Sources */,
-				BFC40E8B2936D54C002C19D2 /* BookSearchTests.swift in Sources */,
+				BFAB1B5A293850C5001A96A2 /* DummySearch.swift in Sources */,
+				BFC40E8B2936D54C002C19D2 /* SearchViewModelTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

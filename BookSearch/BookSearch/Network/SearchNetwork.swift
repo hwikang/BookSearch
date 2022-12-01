@@ -9,14 +9,13 @@ import Foundation
 import Combine
 
 class SearchNetwork {
-    private let network: NetworkManager = NetworkManager(session: URLSession.shared)
+    private let network: NetworkManager
     private let endPoint = "https://api.itbook.store/1.0/search/"
     
-    func search(query: String, completion: @escaping (Result<SearchList,Error>)-> Void) {
-        network.fetchData(url: "\(endPoint)\(query)", dataType: SearchList.self, completion: completion)        
+    init(network: NetworkManager) {
+        self.network = network
     }
-    
-    func search(query: String) async throws -> SearchList {
-        return try await network.fetchData(url: "\(endPoint)\(query)", dataType: SearchList.self)
+    func search(query: String, page: Int, completion: @escaping (Result<SearchList,Error>)-> Void) {
+        network.fetchData(url: "\(endPoint)\(query)/\(page)", dataType: SearchList.self, completion: completion)
     }
 }

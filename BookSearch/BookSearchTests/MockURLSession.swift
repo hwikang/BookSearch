@@ -13,7 +13,6 @@ class MockURLSession: URLSession {
     
     init(response: Response) {
         self.response = response
-        super.init(configuration: .default)
     }
     
     override func dataTask(with url: URL,
