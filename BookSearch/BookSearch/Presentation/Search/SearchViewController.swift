@@ -50,11 +50,12 @@ final class SearchViewController: UIViewController {
     }
 }
 
-extension SearchViewController: UITableViewDataSourcePrefetching {
+extension SearchViewController: UITableViewDataSourcePrefetching, UITableViewDelegate {
     enum Section{ case book }
     
     private func setupTableView() {
         searchView.tableView.prefetchDataSource = self
+        searchView.tableView.delegate = self
         searchView.tableView.register(BookTableViewCell.self, forCellReuseIdentifier: BookTableViewCell.identifier)
         configureDataSource()
     }
@@ -74,7 +75,7 @@ extension SearchViewController: UITableViewDataSourcePrefetching {
             cell?.titleLabel.text = book.title
             cell?.subTitleLabel.text = book.subtitle
             cell?.priceLabel.text = book.price
-            cell?.isbnLabel.text = book.isbn13
+            cell?.setISBN(book.isbn13)
             cell?.urlLabel.text = book.url
             cell?.bookImage.setImage(url: book.image)
             return cell
@@ -90,6 +91,13 @@ extension SearchViewController: UITableViewDataSourcePrefetching {
         }
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if let cell = tableView.cellForRow(at: indexPath) as? BookTableViewCell {
+            let vc = BookViewController(isbn: cell.getISBN())
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+    }
+    
     private func needLoadMore(row: Int,cellCount: Int) -> Bool {
         if cellCount % 10 == 0 && row >= cellCount - 1 {
             return true
@@ -102,9 +110,10 @@ extension SearchViewController {
     
     private func setDismissKeyboardEvent() {
         let gesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        gesture.cancelsTouchesInView = false
         self.view.addGestureRecognizer(gesture)
     }
-    
+
     @objc private func dismissKeyboard() {
         self.view.endEditing(true)
     }
