@@ -38,6 +38,15 @@ final class SearchViewController: UIViewController {
             .sink {[weak self] books in
             self?.updateTableViewSnapshot(books)
         }.store(in: &cancellables)
+        
+        output.errorMessage
+            .receive(on: DispatchQueue.main)
+            .sink {[weak self] errorMessage in
+                let dialog = DialogManager.getDialog(title: "NetworkError", message: errorMessage)
+                self?.present(dialog, animated: true)
+            }
+            .store(in: &cancellables)
+        
     }
 }
 
@@ -57,7 +66,6 @@ extension SearchViewController: UITableViewDataSourcePrefetching {
         dataSource.apply(snapshot)
     }
        
-    
     private func configureDataSource() {
         dataSource = UITableViewDiffableDataSource<Section, Book>(tableView: searchView.tableView, cellProvider: { tableView, indexPath, book in
 
@@ -75,15 +83,15 @@ extension SearchViewController: UITableViewDataSourcePrefetching {
     
     func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
         for indexPath in indexPaths {
-            if needLoadMore(row: indexPath.row){
+            let cellCount = tableView.numberOfRows(inSection: indexPath.section)
+            if needLoadMore(row: indexPath.row, cellCount: cellCount){
                 loadMoreSubject.send()
             }
         }
     }
     
-    private func needLoadMore(row: Int) -> Bool {
-        let dataCount = viewModel.getListCount()
-        if dataCount % 10 == 0 && row >= dataCount - 1 {
+    private func needLoadMore(row: Int,cellCount: Int) -> Bool {
+        if cellCount % 10 == 0 && row >= cellCount - 1 {
             return true
         }
         return false

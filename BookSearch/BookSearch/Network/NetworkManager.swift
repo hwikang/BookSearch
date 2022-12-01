@@ -17,6 +17,8 @@ final class NetworkManager {
     }
     
     func fetchData<T:Decodable> (url: String, dataType: T.Type, completion: @escaping ((Result<T,Error>) -> Void)){
+        print("url \(url)")
+
          guard let url = URL(string: url) else {
              completion(.failure(NetworkError.urlError))
              return 
@@ -43,18 +45,4 @@ final class NetworkManager {
          }.resume()
          
      }
-  
-    func fetchData<T: Decodable> (url: String, dataType: T.Type) async throws -> T {
-        guard let url = URL(string: url) else {
-            throw NetworkError.urlError
-        }
-        
-        let (data, response) = try await session.data(from: url)
-        
-        guard let httpResponse = response as? HTTPURLResponse, 200..<300 ~= httpResponse.statusCode  else {
-            throw NetworkError.invalid
-        }
-        return try JSONDecoder().decode(T.self, from: data)
-
-    }
 }

@@ -97,6 +97,14 @@
 			path = Data;
 			sourceTree = "<group>";
 		};
+		BFAB1B5F293875A6001A96A2 /* Mock */ = {
+			isa = PBXGroup;
+			children = (
+				BFC40EC8293752F2002C19D2 /* MockURLSession.swift */,
+			);
+			path = Mock;
+			sourceTree = "<group>";
+		};
 		BFC40E672936D54A002C19D2 = {
 			isa = PBXGroup;
 			children = (
@@ -134,10 +142,10 @@
 		BFC40E892936D54C002C19D2 /* BookSearchTests */ = {
 			isa = PBXGroup;
 			children = (
-				BFC40E8A2936D54C002C19D2 /* SearchViewModelTests.swift */,
+				BFAB1B5F293875A6001A96A2 /* Mock */,
 				BFAB1B58293850B0001A96A2 /* Data */,
+				BFC40E8A2936D54C002C19D2 /* SearchViewModelTests.swift */,
 				BFC40EC629375280002C19D2 /* URLSessionTests.swift */,
-				BFC40EC8293752F2002C19D2 /* MockURLSession.swift */,
 			);
 			path = BookSearchTests;
 			sourceTree = "<group>";

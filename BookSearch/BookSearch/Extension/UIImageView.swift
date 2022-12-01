@@ -15,7 +15,7 @@ extension UIImageView {
             self.image = cacheImage
             return
         }
-        
+
         DispatchQueue.global(qos: .background).async {
             if let url = URL(string: url),
                let data = try? Data(contentsOf: url),

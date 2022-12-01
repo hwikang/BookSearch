@@ -14,7 +14,7 @@ class SearchViewModelTests: XCTestCase {
     var searchText: PassthroughSubject<String, Never>!
     var loadMore: PassthroughSubject<Void, Never>!
     var cancellables = Set<AnyCancellable>()
-
+    var output: SearchViewModel.Output!
     override func setUpWithError() throws {
         let url = "https://api.itbook.store/1.0/search/"
         let data = dummy.data(using: .utf8)
@@ -25,7 +25,7 @@ class SearchViewModelTests: XCTestCase {
         loadMore = PassthroughSubject<Void,Never>()
 
         let input = SearchViewModel.Input(searchText: searchText.eraseToAnyPublisher() , loadMore: loadMore.eraseToAnyPublisher())
-        let _ = sut.transform(input: input)
+        output = sut.transform(input: input)
 
     }
 
@@ -40,7 +40,7 @@ class SearchViewModelTests: XCTestCase {
         searchText.send("Hi")
         searchText.send("Hi")
         
-        sut.$bookList
+        output.bookList
             .dropFirst()
             .sink { books in
             let title = "Just Hibernate"
