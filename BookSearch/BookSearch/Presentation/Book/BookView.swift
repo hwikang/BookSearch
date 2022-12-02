@@ -15,17 +15,13 @@ final class BookView: UIView {
     let stackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
-//        stackView.alignment = .center
-//        stackView.distribution = .fill
         stackView.spacing = 14
         return stackView
     }()
     
     let bookImage: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(named: "placeholder")
         imageView.contentMode = .scaleAspectFit
-        imageView.backgroundColor = .red
         return imageView
     }()
     

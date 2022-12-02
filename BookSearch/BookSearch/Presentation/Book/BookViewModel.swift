@@ -30,7 +30,6 @@ final class BookViewModel {
         input.trigger
             .receive(on: DispatchQueue.global(qos: .background))
             .sink { [weak self] isbn in
-                print("Triggered")
             self?.searchBook(isbn: isbn)
             
         }.store(in: &cancellables)

@@ -11,6 +11,7 @@ import Combine
 
 final class BookViewController: UIViewController {
     private var cancellables = Set<AnyCancellable>()
+    private let trigger = PassthroughSubject<String,Never>()
     private let viewModel: BookViewModel
     private let isbn: String
     
@@ -28,8 +29,11 @@ final class BookViewController: UIViewController {
         bindViewModel()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        trigger.send(isbn)
+    }
+    
     private func bindViewModel() {
-        let trigger = [isbn].publisher
         let input = BookViewModel.Input(trigger: trigger.eraseToAnyPublisher())
         let output = viewModel.transform(input: input)
         
