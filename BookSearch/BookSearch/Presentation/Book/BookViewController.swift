@@ -40,8 +40,12 @@ final class BookViewController: UIViewController {
         output.book
             .receive(on: DispatchQueue.main)
             .sink {[weak self] book in
-                print(book)
-                self?.bookView.setContent(book: book)
+                guard let self = self else { return }
+                self.bookView.setContent(book: book)
+                if let pdf = book.pdf {
+                    let sortedPdf = self.viewModel.sortPDF(pdf: pdf)
+                    self.bookView.setPDF(pdf: sortedPdf)
+                }
             }
             .store(in: &cancellables)
     }

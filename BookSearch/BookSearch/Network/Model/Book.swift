@@ -23,5 +23,5 @@ struct Book: Decodable, Hashable {
     let rating: String?
     let desc: String?
     let pdf: [String:String]?
-  
+    
 }

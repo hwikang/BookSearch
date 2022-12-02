@@ -37,6 +37,40 @@ final class BookViewModel {
         return Output(book: book.eraseToAnyPublisher(),errorMessage: errorMessage.eraseToAnyPublisher())
     }
     
+    func sortPDF(pdf:[String: String]) -> [Dictionary<String, String>.Element] {
+        let sortedPDF = pdf.sorted { first, second in
+            if first.key.contains("Extra") {
+                if second.key.contains("Extra") {
+                    return compareNumber(firstKey: first.key, secondKey: second.key)
+                }else {
+                    return false
+                }
+            } else if first.key.contains("Appendix") {
+                if second.key.contains("Extra") {
+                   return true
+                }else if second.key.contains("Appendix"){
+                    return compareNumber(firstKey: first.key, secondKey: second.key)
+                }else {
+                    return false
+                }
+            } else {
+                if second.key.contains("Appendix") || second.key.contains("Extra") {
+                    return true
+                }else {
+                    return compareNumber(firstKey: first.key, secondKey: second.key)
+                }
+            }
+        }
+        return sortedPDF
+    }
+    
+    private func compareNumber(firstKey:String, secondKey: String)  -> Bool{
+        if let firstNum = firstKey.last?.wholeNumberValue, let lastNum = secondKey.last?.wholeNumberValue {
+                return firstNum < lastNum
+        }
+        return true
+    }
+    
     private func searchBook(isbn: String) {
 
         network.search(isbn: isbn) {[weak self] searchResult in
@@ -48,13 +82,12 @@ final class BookViewModel {
             }
         }
     }
-    //Todo: 중복 제거?
+    
     private func onFailSearch(error: Error) {
         if let error = error as? URLError {
             errorMessage.send(error.localizedDescription)
         }else if let error = error as? NetworkError {
             print("Search Error \(error)")
-            
         }
     }
     

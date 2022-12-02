@@ -8,7 +8,6 @@
 import Foundation
 import UIKit
 
-
 final class BookView: UIView {
     
     let scrollView = UIScrollView()
@@ -119,16 +118,17 @@ final class BookView: UIView {
         }
         descLabel.text = book.desc
         urlLabel.text = book.url
-        if let pdf = book.pdf {
-            setPDF(pdf: pdf)
-        }
+       
     }
     
-    func setPDF(pdf: [String:String]){
+    func setPDF(pdf: [Dictionary<String, String>.Element]){
+        
+        
         if let test = pdf.first {
             let imageView = UIImageView()
             imageView.setImage(pdfUrl: test.value)
             stackView.addArrangedSubview(imageView)
+            
             
         }
         
