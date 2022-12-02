@@ -48,6 +48,15 @@ final class BookViewController: UIViewController {
                 }
             }
             .store(in: &cancellables)
+        
+        output.errorMessage
+            .receive(on: DispatchQueue.main)
+            .sink {[weak self] errorMessage in
+                let dialog = DialogManager.getDialog(title: "NetworkError", message: errorMessage)
+                self?.present(dialog, animated: true)
+            }
+            .store(in: &cancellables)
+        
     }
     
     required init?(coder: NSCoder) {

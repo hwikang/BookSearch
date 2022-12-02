@@ -47,8 +47,6 @@ final class BookView: UIView {
     let descLabel = DefaultLabel()
     let isbnLabel = DefaultLabel()
   
-
-
     override init(frame: CGRect) {
         super.init(frame: frame)
         setUI()
@@ -62,8 +60,7 @@ final class BookView: UIView {
         priceLabel.text = book.price
         authorLabel.text = book.authors
         languageLabel.text = book.language
-        if let year = book.year, let rating = book.rating,
-          let isbn10 = book.isbn10 {
+        if let year = book.year, let rating = book.rating, let isbn10 = book.isbn10 {
             yearLabel.text = "\(year) Year"
             ratingLabel.text = "Rating : \(rating) / 5"
             isbnLabel.text = "ISBN13: \(book.isbn13) ISBN10: \(isbn10)"

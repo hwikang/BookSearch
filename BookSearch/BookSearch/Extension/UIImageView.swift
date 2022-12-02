@@ -31,7 +31,6 @@ extension UIImageView {
             guard let url = URL(string: pdfUrl),
                 let document = CGPDFDocument(url as CFURL),
                 let page = document.page(at:1) else {
-                print("Load Document Error")
                 return
             }
             let pageRect = page.getBoxRect(.mediaBox)
