@@ -10,16 +10,21 @@ import Combine
 
 final class SearchViewController: UIViewController {
     private var cancellables = Set<AnyCancellable>()
-    private let viewModel: SearchViewModel = SearchViewModel(network: SearchNetwork(network: NetworkManager(session: URLSession.shared)))
+    private let viewModel: SearchViewModel
     private var dataSource: UITableViewDiffableDataSource<Section, Book>!
     private let loadMoreSubject = PassthroughSubject<Void, Never>()
 
     var searchView = SearchView()
+    init(viewModel: SearchViewModel) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view = searchView
         setupTableView()
+        setupTextField()
         setDismissKeyboardEvent()
         bindViewModel()
     }
@@ -48,15 +53,45 @@ final class SearchViewController: UIViewController {
             .store(in: &cancellables)
         
     }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 }
 
-extension SearchViewController: UITableViewDataSourcePrefetching {
+extension SearchViewController: UITableViewDataSourcePrefetching, UITableViewDelegate, UITextFieldDelegate {
     enum Section{ case book }
+    
+    func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
+        for indexPath in indexPaths {
+            let cellCount = tableView.numberOfRows(inSection: indexPath.section)
+            if needLoadMore(row: indexPath.row, cellCount: cellCount){
+                loadMoreSubject.send()
+            }
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if let cell = tableView.cellForRow(at: indexPath) as? BookTableViewCell {
+            let network = BookNetwork(network: NetworkManager(session: URLSession.shared))
+            let viewModel = BookViewModel(network: network)
+            let viewController = BookViewController(isbn: cell.getISBN(), viewModel: viewModel)
+            
+            self.navigationController?.pushViewController(viewController, animated: true)
+        }
+    }
+    
+
     
     private func setupTableView() {
         searchView.tableView.prefetchDataSource = self
+        searchView.tableView.delegate = self
         searchView.tableView.register(BookTableViewCell.self, forCellReuseIdentifier: BookTableViewCell.identifier)
         configureDataSource()
+    }
+    
+    private func setupTextField() {
+        searchView.textField.delegate = self
     }
 
     private func updateTableViewSnapshot(_ value: [Book]) {
@@ -74,21 +109,18 @@ extension SearchViewController: UITableViewDataSourcePrefetching {
             cell?.titleLabel.text = book.title
             cell?.subTitleLabel.text = book.subtitle
             cell?.priceLabel.text = book.price
-            cell?.isbnLabel.text = book.isbn13
+            cell?.setISBN(book.isbn13)
             cell?.urlLabel.text = book.url
             cell?.bookImage.setImage(url: book.image)
             return cell
         })
     }
     
-    func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
-        for indexPath in indexPaths {
-            let cellCount = tableView.numberOfRows(inSection: indexPath.section)
-            if needLoadMore(row: indexPath.row, cellCount: cellCount){
-                loadMoreSubject.send()
-            }
-        }
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        dismissKeyboard()
+        return true
     }
+    
     
     private func needLoadMore(row: Int,cellCount: Int) -> Bool {
         if cellCount % 10 == 0 && row >= cellCount - 1 {
@@ -102,9 +134,10 @@ extension SearchViewController {
     
     private func setDismissKeyboardEvent() {
         let gesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        gesture.cancelsTouchesInView = false
         self.view.addGestureRecognizer(gesture)
     }
-    
+
     @objc private func dismissKeyboard() {
         self.view.endEditing(true)
     }

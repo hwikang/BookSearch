@@ -11,7 +11,7 @@ import UIKit
 
 class BookTableViewCell : UITableViewCell {
     static let identifier = "BookTableViewCell"
-    
+    private var isbn: String = ""
     let titleLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 20, weight: .bold)
@@ -38,6 +38,7 @@ class BookTableViewCell : UITableViewCell {
         label.font = UIFont.systemFont(ofSize: 10, weight: .light)
         return label
     }()
+    
     let urlLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 10, weight: .light)
@@ -52,6 +53,13 @@ class BookTableViewCell : UITableViewCell {
     override func prepareForReuse() {
         super.prepareForReuse()
         bookImage.image = UIImage(named: "placeholder")
+    }
+    public func setISBN(_ value: String) {
+        isbn = value
+        isbnLabel.text = value
+    }
+    public func getISBN() -> String {
+        return isbn
     }
     
     private func setUI() {

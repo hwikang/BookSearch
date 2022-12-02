@@ -15,8 +15,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = scene as? UIWindowScene else { return }
         window = UIWindow(windowScene: windowScene)
         
-        let mainVC = SearchViewController()
-        let rootVC = UINavigationController(rootViewController: mainVC)
+        let network = SearchNetwork(network: NetworkManager(session: URLSession.shared))
+        let viewModel = SearchViewModel(network: network)
+        let viewController = SearchViewController(viewModel: viewModel)
+
+        let rootVC = UINavigationController(rootViewController: viewController)
         window?.backgroundColor = .white
         window?.rootViewController = rootVC
 
