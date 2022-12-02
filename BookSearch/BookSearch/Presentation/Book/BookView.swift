@@ -47,7 +47,6 @@ final class BookView: UIView {
     let descLabel = DefaultLabel()
     let isbnLabel = DefaultLabel()
   
-    let urlLabel = DefaultLabel()
 
 
     override init(frame: CGRect) {
@@ -70,28 +69,37 @@ final class BookView: UIView {
             isbnLabel.text = "ISBN13: \(book.isbn13) ISBN10: \(isbn10)"
         }
         descLabel.text = book.desc
-        urlLabel.text = book.url
+        addLinkButtonToStackView(title: "Go to Store", url: book.url)
        
     }
     
     func setPDF(pdf: [Dictionary<String, String>.Element]){
-        
-        
-        if let test = pdf.first {
-            let imageView = UIImageView()
-            imageView.setImage(pdfUrl: test.value)
-            stackView.addArrangedSubview(imageView)
-            
-            
+        pdf.forEach { element in
+            element.key == "Free eBook"
+            ? addLinkButtonToStackView(title: element.key, url: element.value)
+            : addImageViewToStackView(element: element)
         }
-        
+    }
+    private func addLinkButtonToStackView(title: String, url: String) {
+        let button = LinkButton(url: url)
+        button.setTitle(title, for: .normal)
+        button.setTitleColor(.systemBlue, for: .normal)
+        stackView.addArrangedSubview(button)
     }
     
+    private func addImageViewToStackView(element: Dictionary<String, String>.Element) {
+        let label = DefaultLabel()
+        label.text = element.key
+        let imageView = UIImageView()
+        imageView.setImage(pdfUrl: element.value)
+        stackView.addArrangedSubview(label)
+        stackView.addArrangedSubview(imageView)
+    }
     
     private func setUI() {
         self.addSubview(scrollView)
         scrollView.addSubview(stackView)
-        [bookImage, titleLabel, subTitleLabel, publisherLabel, priceLabel,  authorLabel, languageLabel, yearLabel, ratingLabel, descLabel, isbnLabel, urlLabel].forEach {
+        [bookImage, titleLabel, subTitleLabel, publisherLabel, priceLabel,  authorLabel, languageLabel, yearLabel, ratingLabel, descLabel, isbnLabel].forEach {
             stackView.addArrangedSubview($0)
         }
         
