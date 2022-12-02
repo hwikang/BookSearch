@@ -24,77 +24,30 @@ final class BookView: UIView {
         return imageView
     }()
     
-    let titleLabel: UILabel = {
-       let label = UILabel()
+    let titleLabel: DefaultLabel = {
+       let label = DefaultLabel()
         label.font = UIFont.systemFont(ofSize: 40, weight: .bold)
-        label.numberOfLines = 0
-        label.textAlignment = .center
         return label
     }()
-    let subTitleLabel: UILabel = {
-       let label = UILabel()
+    let subTitleLabel: DefaultLabel = {
+       let label = DefaultLabel()
         label.font = UIFont.systemFont(ofSize: 24, weight: .light)
-        label.numberOfLines = 0
-        label.textAlignment = .center
         return label
     }()
-    let publisherLabel: UILabel = {
-       let label = UILabel()
+    let publisherLabel: DefaultLabel = {
+       let label = DefaultLabel()
         label.font = UIFont.systemFont(ofSize: 18, weight: .light)
-        label.textAlignment = .center
         return label
     }()
-    let priceLabel: UILabel = {
-       let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 14, weight: .light)
-        label.textAlignment = .center
-        return label
-    }()
-    let authorLabel: UILabel = {
-       let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 14, weight: .light)
-        label.textAlignment = .center
-        return label
-    }()
-    let languageLabel: UILabel = {
-       let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 14, weight: .light)
-        label.textAlignment = .center
-        return label
-    }()
-    
-    let yearLabel: UILabel = {
-       let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 14, weight: .light)
-        label.textAlignment = .center
-        return label
-    }()
-    let ratingLabel: UILabel = {
-       let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 14, weight: .light)
-        label.textAlignment = .center
-        return label
-    }()
-    let descLabel: UILabel = {
-       let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 14, weight: .light)
-        label.numberOfLines = 0
-        label.textAlignment = .center
-        return label
-    }()
-    let isbnLabel: UILabel = {
-       let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 14, weight: .light)
-        label.textAlignment = .center
-        return label
-    }()
+    let priceLabel = DefaultLabel()
+    let authorLabel = DefaultLabel()
+    let languageLabel = DefaultLabel()
+    let yearLabel = DefaultLabel()
+    let ratingLabel = DefaultLabel()
+    let descLabel = DefaultLabel()
+    let isbnLabel = DefaultLabel()
   
-    let urlLabel: UILabel = {
-       let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 14, weight: .light)
-        label.textAlignment = .center
-        return label
-    }()
+    let urlLabel = DefaultLabel()
 
 
     override init(frame: CGRect) {
