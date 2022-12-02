@@ -24,6 +24,7 @@ final class SearchViewController: UIViewController {
         super.viewDidLoad()
         self.view = searchView
         setupTableView()
+        setupTextField()
         setDismissKeyboardEvent()
         bindViewModel()
     }
@@ -58,14 +59,39 @@ final class SearchViewController: UIViewController {
     }
 }
 
-extension SearchViewController: UITableViewDataSourcePrefetching, UITableViewDelegate {
+extension SearchViewController: UITableViewDataSourcePrefetching, UITableViewDelegate, UITextFieldDelegate {
     enum Section{ case book }
+    
+    func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
+        for indexPath in indexPaths {
+            let cellCount = tableView.numberOfRows(inSection: indexPath.section)
+            if needLoadMore(row: indexPath.row, cellCount: cellCount){
+                loadMoreSubject.send()
+            }
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if let cell = tableView.cellForRow(at: indexPath) as? BookTableViewCell {
+            let network = BookNetwork(network: NetworkManager(session: URLSession.shared))
+            let viewModel = BookViewModel(network: network)
+            let viewController = BookViewController(isbn: cell.getISBN(), viewModel: viewModel)
+            
+            self.navigationController?.pushViewController(viewController, animated: true)
+        }
+    }
+    
+
     
     private func setupTableView() {
         searchView.tableView.prefetchDataSource = self
         searchView.tableView.delegate = self
         searchView.tableView.register(BookTableViewCell.self, forCellReuseIdentifier: BookTableViewCell.identifier)
         configureDataSource()
+    }
+    
+    private func setupTextField() {
+        searchView.textField.delegate = self
     }
 
     private func updateTableViewSnapshot(_ value: [Book]) {
@@ -90,24 +116,11 @@ extension SearchViewController: UITableViewDataSourcePrefetching, UITableViewDel
         })
     }
     
-    func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
-        for indexPath in indexPaths {
-            let cellCount = tableView.numberOfRows(inSection: indexPath.section)
-            if needLoadMore(row: indexPath.row, cellCount: cellCount){
-                loadMoreSubject.send()
-            }
-        }
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        dismissKeyboard()
+        return true
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if let cell = tableView.cellForRow(at: indexPath) as? BookTableViewCell {
-            let network = BookNetwork(network: NetworkManager(session: URLSession.shared))
-            let viewModel = BookViewModel(network: network)
-            let viewController = BookViewController(isbn: cell.getISBN(), viewModel: viewModel)
-            
-            self.navigationController?.pushViewController(viewController, animated: true)
-        }
-    }
     
     private func needLoadMore(row: Int,cellCount: Int) -> Bool {
         if cellCount % 10 == 0 && row >= cellCount - 1 {

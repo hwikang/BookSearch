@@ -103,6 +103,38 @@ final class BookView: UIView {
         setUI()
     }
     
+    func setContent(book: Book) {
+        bookImage.setImage(url: book.image)
+        titleLabel.text = book.title
+        subTitleLabel.text = book.subtitle
+        publisherLabel.text = book.publisher
+        priceLabel.text = book.price
+        authorLabel.text = book.authors
+        languageLabel.text = book.language
+        if let year = book.year, let rating = book.rating,
+          let isbn10 = book.isbn10 {
+            yearLabel.text = "\(year) Year"
+            ratingLabel.text = "Rating : \(rating) / 5"
+            isbnLabel.text = "ISBN13: \(book.isbn13) ISBN10: \(isbn10)"
+        }
+        descLabel.text = book.desc
+        urlLabel.text = book.url
+        if let pdf = book.pdf {
+            setPDF(pdf: pdf)
+        }
+    }
+    
+    func setPDF(pdf: [String:String]){
+        if let test = pdf.first {
+            let imageView = UIImageView()
+            imageView.setImage(pdfUrl: test.value)
+            stackView.addArrangedSubview(imageView)
+            
+        }
+        
+    }
+    
+    
     private func setUI() {
         self.addSubview(scrollView)
         scrollView.addSubview(stackView)
@@ -118,7 +150,7 @@ final class BookView: UIView {
             $0.translatesAutoresizingMaskIntoConstraints = false
         }
         NSLayoutConstraint.activate([
-            scrollView.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 0),
+            scrollView.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor),
             scrollView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
             scrollView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
             scrollView.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor),

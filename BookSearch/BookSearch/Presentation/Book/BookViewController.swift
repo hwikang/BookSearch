@@ -41,30 +41,9 @@ final class BookViewController: UIViewController {
             .receive(on: DispatchQueue.main)
             .sink {[weak self] book in
                 print(book)
-                self?.setContent(book: book)
+                self?.bookView.setContent(book: book)
             }
             .store(in: &cancellables)
-    }
-    
-    private func setContent(book: Book) {
-        bookView.bookImage.setImage(url: book.image)
-        bookView.titleLabel.text = book.title
-        bookView.subTitleLabel.text = book.subtitle
-        bookView.publisherLabel.text = book.publisher
-        bookView.priceLabel.text = book.price
-        bookView.authorLabel.text = book.authors
-        bookView.languageLabel.text = book.language
-        if let year = book.year, let rating = book.rating,
-          let isbn10 = book.isbn10 {
-            bookView.yearLabel.text = "\(year) Year"
-            bookView.ratingLabel.text = "Rating : \(rating) / 5"
-            bookView.isbnLabel.text = "ISBN13: \(book.isbn13) ISBN10: \(isbn10)"
-        }
-        bookView.descLabel.text = book.desc
-
-        bookView.urlLabel.text = book.url
-        
-
     }
     
     required init?(coder: NSCoder) {
