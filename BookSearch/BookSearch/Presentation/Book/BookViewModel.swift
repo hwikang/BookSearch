@@ -38,6 +38,7 @@ final class BookViewModel {
     }
     
     func sortPDF(pdf:[String: String]) -> [Dictionary<String, String>.Element] {
+        print(pdf)
         let sortedPDF = pdf.sorted { first, second in
             if first.key.contains("Extra") {
                 if second.key.contains("Extra") {

@@ -16,6 +16,8 @@
 		BFAB1B6929389B3F001A96A2 /* BookView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFAB1B6829389B3F001A96A2 /* BookView.swift */; };
 		BFB9F7712939DD6800631AF7 /* DefaultLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB9F7702939DD6800631AF7 /* DefaultLabel.swift */; };
 		BFB9F7732939E52500631AF7 /* LinkButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB9F7722939E52500631AF7 /* LinkButton.swift */; };
+		BFB9F777293B47D900631AF7 /* DummyBook.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB9F776293B47D900631AF7 /* DummyBook.swift */; };
+		BFB9F779293B47FB00631AF7 /* BookViewModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB9F778293B47FB00631AF7 /* BookViewModelTest.swift */; };
 		BFC40E742936D54B002C19D2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC40E732936D54B002C19D2 /* AppDelegate.swift */; };
 		BFC40E762936D54B002C19D2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC40E752936D54B002C19D2 /* SceneDelegate.swift */; };
 		BFC40E782936D54B002C19D2 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC40E772936D54B002C19D2 /* SearchViewController.swift */; };
@@ -58,6 +60,8 @@
 		BFAB1B6829389B3F001A96A2 /* BookView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookView.swift; sourceTree = "<group>"; };
 		BFB9F7702939DD6800631AF7 /* DefaultLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultLabel.swift; sourceTree = "<group>"; };
 		BFB9F7722939E52500631AF7 /* LinkButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkButton.swift; sourceTree = "<group>"; };
+		BFB9F776293B47D900631AF7 /* DummyBook.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DummyBook.swift; sourceTree = "<group>"; };
+		BFB9F778293B47FB00631AF7 /* BookViewModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookViewModelTest.swift; sourceTree = "<group>"; };
 		BFC40E702936D54B002C19D2 /* BookSearch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BookSearch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BFC40E732936D54B002C19D2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BFC40E752936D54B002C19D2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -105,6 +109,7 @@
 			isa = PBXGroup;
 			children = (
 				BFAB1B59293850C5001A96A2 /* DummySearch.swift */,
+				BFB9F776293B47D900631AF7 /* DummyBook.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -185,6 +190,7 @@
 				BFAB1B5F293875A6001A96A2 /* Mock */,
 				BFAB1B58293850B0001A96A2 /* Data */,
 				BFC40E8A2936D54C002C19D2 /* SearchViewModelTests.swift */,
+				BFB9F778293B47FB00631AF7 /* BookViewModelTest.swift */,
 				BFC40EC629375280002C19D2 /* URLSessionTests.swift */,
 			);
 			path = BookSearchTests;
@@ -390,7 +396,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				BFC40EC9293752F2002C19D2 /* MockURLSession.swift in Sources */,
+				BFB9F779293B47FB00631AF7 /* BookViewModelTest.swift in Sources */,
 				BFC40EC729375281002C19D2 /* URLSessionTests.swift in Sources */,
+				BFB9F777293B47D900631AF7 /* DummyBook.swift in Sources */,
 				BFAB1B5A293850C5001A96A2 /* DummySearch.swift in Sources */,
 				BFC40E8B2936D54C002C19D2 /* SearchViewModelTests.swift in Sources */,
 			);
