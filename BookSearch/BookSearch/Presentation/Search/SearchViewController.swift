@@ -76,12 +76,9 @@ extension SearchViewController: UITableViewDataSourcePrefetching, UITableViewDel
             let network = BookNetwork(network: NetworkManager(session: URLSession.shared))
             let viewModel = BookViewModel(network: network)
             let viewController = BookViewController(isbn: cell.getISBN(), viewModel: viewModel)
-            
             self.navigationController?.pushViewController(viewController, animated: true)
         }
     }
-    
-
     
     private func setupTableView() {
         searchView.tableView.prefetchDataSource = self

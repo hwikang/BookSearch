@@ -91,7 +91,6 @@ final class SearchViewModel {
             errorMessage.send(error.localizedDescription)        
         }else if let error = error as? NetworkError {
             print("Search Error \(error)")
-            
         }
     }
     

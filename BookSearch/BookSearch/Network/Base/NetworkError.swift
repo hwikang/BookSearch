@@ -10,5 +10,7 @@ import Foundation
 enum NetworkError: Error {
     case urlError
     case invalid
-    case failToDecode
+    case failToDecode(String)
+    case dataNil
+    case serverError(Int)
 }

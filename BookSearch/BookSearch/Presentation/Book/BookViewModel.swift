@@ -88,7 +88,7 @@ final class BookViewModel {
         if let error = error as? URLError {
             errorMessage.send(error.localizedDescription)
         }else if let error = error as? NetworkError {
-            print("Search Error \(error)")
+            print("Book Search Error \(error)")
         }
     }
     
