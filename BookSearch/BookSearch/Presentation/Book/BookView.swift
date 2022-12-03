@@ -14,7 +14,7 @@ final class BookView: UIView {
     let stackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
-        stackView.spacing = 14
+        stackView.spacing = Layout.bookStackViewSpacing
         return stackView
     }()
     
