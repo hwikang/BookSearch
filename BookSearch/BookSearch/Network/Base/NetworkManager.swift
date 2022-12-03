@@ -17,30 +17,24 @@ final class NetworkManager {
     }
     
     func fetchData<T:Decodable> (url: String, dataType: T.Type, completion: @escaping ((Result<T,Error>) -> Void)){
-        print("url \(url)")
 
          guard let url = URL(string: url) else {
              completion(.failure(NetworkError.urlError))
              return 
          }
          session.dataTask(with: url) { (data, response, error) in
-             if let error = error {
-                 print(error)
-                 completion(.failure(error))
-                 return
-             }
-             if let data = data,
-                let response = response as? HTTPURLResponse,
-                200..<300 ~= response.statusCode {
+             if let error = error {  completion(.failure(error)); return }
+             guard let data = data else { completion(.failure(NetworkError.dataNil)); return }
+             guard let response =  response as? HTTPURLResponse else { completion(.failure(NetworkError.invalid)); return }
+             if 200..<400 ~= response.statusCode {
                  do {
                      let data = try JSONDecoder().decode(T.self, from: data)
                      completion(.success(data))
                  } catch {
-                     print(error)
-                     completion(.failure(NetworkError.failToDecode))
+                     completion(.failure(NetworkError.failToDecode(error.localizedDescription)))
                  }
              }else {
-                 completion(.failure(NetworkError.invalid))
+                 completion(.failure(NetworkError.serverError(response.statusCode)))
              }
          }.resume()
          

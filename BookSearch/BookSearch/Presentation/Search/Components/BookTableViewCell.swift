@@ -50,14 +50,25 @@ class BookTableViewCell : UITableViewCell {
         setUI()
     }
     
+    func configure(book: Book) {
+        titleLabel.text = book.title
+        subTitleLabel.text = book.subtitle
+        priceLabel.text = book.price
+        setISBN(book.isbn13)
+        urlLabel.text = book.url
+        bookImage.setImage(url: book.image)
+    }
+    
     override func prepareForReuse() {
         super.prepareForReuse()
         bookImage.image = UIImage(named: "placeholder")
     }
+    
     public func setISBN(_ value: String) {
         isbn = value
         isbnLabel.text = value
     }
+    
     public func getISBN() -> String {
         return isbn
     }

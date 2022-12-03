@@ -76,12 +76,9 @@ extension SearchViewController: UITableViewDataSourcePrefetching, UITableViewDel
             let network = BookNetwork(network: NetworkManager(session: URLSession.shared))
             let viewModel = BookViewModel(network: network)
             let viewController = BookViewController(isbn: cell.getISBN(), viewModel: viewModel)
-            
             self.navigationController?.pushViewController(viewController, animated: true)
         }
     }
-    
-
     
     private func setupTableView() {
         searchView.tableView.prefetchDataSource = self
@@ -105,13 +102,7 @@ extension SearchViewController: UITableViewDataSourcePrefetching, UITableViewDel
         dataSource = UITableViewDiffableDataSource<Section, Book>(tableView: searchView.tableView, cellProvider: { tableView, indexPath, book in
 
            let cell = tableView.dequeueReusableCell(withIdentifier: BookTableViewCell.identifier, for: indexPath) as? BookTableViewCell
-            
-            cell?.titleLabel.text = book.title
-            cell?.subTitleLabel.text = book.subtitle
-            cell?.priceLabel.text = book.price
-            cell?.setISBN(book.isbn13)
-            cell?.urlLabel.text = book.url
-            cell?.bookImage.setImage(url: book.image)
+            cell?.configure(book: book)
             return cell
         })
     }

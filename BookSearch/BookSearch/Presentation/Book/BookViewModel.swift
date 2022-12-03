@@ -38,6 +38,7 @@ final class BookViewModel {
     }
     
     func sortPDF(pdf:[String: String]) -> [Dictionary<String, String>.Element] {
+        print(pdf)
         let sortedPDF = pdf.sorted { first, second in
             if first.key.contains("Extra") {
                 if second.key.contains("Extra") {
@@ -87,7 +88,7 @@ final class BookViewModel {
         if let error = error as? URLError {
             errorMessage.send(error.localizedDescription)
         }else if let error = error as? NetworkError {
-            print("Search Error \(error)")
+            print("Book Search Error \(error)")
         }
     }
     

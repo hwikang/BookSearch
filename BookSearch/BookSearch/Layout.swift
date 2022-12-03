@@ -13,5 +13,5 @@ enum Layout {
     static let tableViewCellHeight:CGFloat = 150
     static let tableViewCellTopPadding:CGFloat = 10
     static let bookImageHeight: CGFloat = 250
-    
+    static let bookStackViewSpacing: CGFloat = 14
 }

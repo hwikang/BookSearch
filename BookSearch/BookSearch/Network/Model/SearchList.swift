@@ -23,7 +23,7 @@ struct SearchList: Decodable {
         books = try container.decode([Book].self, forKey: Keys.books)
         guard let pageInt = Int(pageString),
               let totalInt = Int(totalString) else {
-            throw NetworkError.failToDecode
+            throw NetworkError.failToDecode("Decoding page total Error")
         }
         page = pageInt
         total = totalInt

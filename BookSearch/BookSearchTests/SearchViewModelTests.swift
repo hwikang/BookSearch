@@ -33,11 +33,10 @@ class SearchViewModelTests: XCTestCase {
         sut = nil
     }
 
-    func test_데이터_가져올시_리스트_갱신() {
-        
-        //when
+    func test_get_book_list_when_send_text() {
         let expectation = XCTestExpectation(description: "Search Text Input...")
-        searchText.send("Hi")
+        //when
+        searchText.send("")
         searchText.send("Hi")
         
         output.bookList
@@ -52,7 +51,7 @@ class SearchViewModelTests: XCTestCase {
         wait(for: [expectation], timeout: 2)
     }
     
-    func test_searchText_공백추가해도_정상작동() {
+    func test_get_book_list_when_text_has_whitespace() {
         let expectation = XCTestExpectation(description: "Search Text Input...")
         //when
         searchText.send("Hi    ")
@@ -70,7 +69,7 @@ class SearchViewModelTests: XCTestCase {
         
     }
     
-    func test_loadMore_데이터갱신() {
+    func test_update_list_when_loadMore() {
         let expectation = XCTestExpectation(description: "Search Text Input...")
         //when
         searchText.send("Hi")
